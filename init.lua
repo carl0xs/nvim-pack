@@ -67,11 +67,10 @@ vim.keymap.set('n', '<leader>s', ':source%<CR>')
 vim.keymap.set('n', '<C-s>', ':w!<CR>')
 vim.keymap.set('n', '<C-q>', ':bd<CR>')
 vim.keymap.set('n', '<leader>ff', ':Files<CR>')
-vim.keymap.set('n', '<C-f>', ':Rg<CR>')
-vim.keymap.set('n', '<C-r>', ':vsplit<CR>')
+vim.keymap.set('n', '<leader>fg', ':Rg<CR>')
 vim.keymap.set('n', '<S-h>', ':bprev<CR>')
 vim.keymap.set('n', '<S-l>', ':bnext<CR>')
-vim.keymap.set('n', '<leader>g', ':GFiles?<CR>')
+vim.keymap.set('n', '<leader>gs', ':GFiles?<CR>')
 
 -- keymaps LSP Coc
 vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', { silent = true })
