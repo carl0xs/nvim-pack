@@ -14,6 +14,8 @@ vim.opt.shiftwidth = 2
 vim.opt.completeopt = { "longest", "menuone" }
 vim.opt.backup = false
 vim.opt.writebackup = false
+vim.opt.expandtab = true
+vim.opt.relativenumber = true
 
 -- Global configs
 vim.g.base16colorspace = 256
@@ -32,20 +34,17 @@ vim.g.coc_global_extensions = {
   'coc-json',
   'coc-solargraph',
   'coc-rust-analyzer',
-	'coc-elixir'
+  'coc-elixir'
 }
 
 vim.cmd("filetype plugin indent on")
 
-vim.cmd("colorscheme gruvbox8")
 vim.o.background = "dark"
 
  -- Plugins Manger
 vim.pack.add({
   { src = "https://github.com/neoclide/coc.nvim" },
-  { src = "https://github.com/lifepillar/vim-gruvbox8" },
   { src = "https://github.com/chriskempson/base16-vim" },
-  { src = "https://github.com/junegunn/fzf" },
   { src = "https://github.com/junegunn/fzf.vim" },
   { src = "https://github.com/tpope/vim-fugitive" },
   { src = "https://github.com/apzelos/blamer.nvim" },
@@ -56,8 +55,8 @@ vim.pack.add({
   { src = "https://github.com/akinsho/bufferline.nvim" },
   { src = "https://github.com/nvim-lualine/lualine.nvim" },
   { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/elixir-lsp/coc-elixir" }
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/elixir-lsp/coc-elixir" }
 })
 
 vim.keymap.set('n', '<leader>e', ':Exp<CR>')
@@ -71,6 +70,15 @@ vim.keymap.set('n', '<leader>fg', ':Rg<CR>')
 vim.keymap.set('n', '<S-h>', ':bprev<CR>')
 vim.keymap.set('n', '<S-l>', ':bnext<CR>')
 vim.keymap.set('n', '<leader>gs', ':GFiles?<CR>')
+vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<CR>')
+vim.keymap.set('n', '<leader>gn', ':Gitsigns next_hunk<CR>')
+vim.keymap.set('n', '<leader>gp', ':Gitsigns prev_hunk<CR>')
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+
 
 -- keymaps LSP Coc
 vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', { silent = true })
@@ -82,13 +90,6 @@ vim.keymap.set('n', '<leader>ca', '<Plug>(coc-codeaction)', { silent = true })
 vim.keymap.set('n', '<leader>qf', '<Plug>(coc-fix-current)', { silent = true })
 
 vim.keymap.set({ 'x', 'n' }, '<leader>f', '<Plug>(coc-format-selected)', { silent = true })
-
-vim.keymap.set('n', '<leader>hb', function()
-  require('gitsigns').blame_line({ full = true })
-end)
-vim.keymap.set('n', '<leader>ht', function()
-  require('gitsigns').toggle_current_line_blame()
-end)
 
 vim.keymap.set('n', 'K', function()
   local filetype = vim.bo.filetype
